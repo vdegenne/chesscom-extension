@@ -1,6 +1,6 @@
-import {config, nodeResolve, terser, typescript} from '@vdegenne/rollup';
+import {config, nodeResolve, terser, typescript} from '@vdegenne/rollup'
 
-const plugins = [nodeResolve(), typescript(), terser()];
+const plugins = [nodeResolve(), typescript(), terser()]
 
 export default config([
 	{
@@ -13,4 +13,9 @@ export default config([
 		output: {file: './background.js', format: 'es'},
 		plugins,
 	},
-]);
+	{
+		input: './src/lichess.ts',
+		output: {file: './lichess.js', format: 'es'},
+		plugins,
+	},
+])

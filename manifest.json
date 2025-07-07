@@ -2,7 +2,7 @@
 	"manifest_version": 3,
 	"name": "chesscom-extension",
 	"version": "0.1",
-	"permissions": [],
+	"permissions": ["storage"],
 	"background": {
 		"service_worker": "./background.js"
 	},
@@ -12,6 +12,10 @@
 			"js": ["./inject-content.js"],
 			"run_at": "document_start",
 			"all_frames": false
+		},
+		{
+			"matches": ["https://lichess.org/paste"],
+			"js": ["./lichess.js"]
 		}
 	],
 	"icons": {

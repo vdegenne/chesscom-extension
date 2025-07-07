@@ -31,7 +31,8 @@
 			],
 			"output": [
 				"./content.js",
-				"./background.js"
+				"./background.js",
+				"./lichess.js"
 			]
 		},
 		"pwa-assets": {
