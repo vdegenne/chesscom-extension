@@ -4,13 +4,26 @@ import {toast} from 'toastit'
 const BOARD_SELECTOR = 'wc-chess-board'
 
 let board: Board
-let keydownEventListener = (event: KeyboardEvent) => {
+let keydownEventListener = async (event: KeyboardEvent) => {
+	const target = event.target as HTMLElement
+	if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA') {
+		return
+	}
+
+	if (event.altKey) {
+		return
+	}
+
 	switch (event.key) {
 		case 'l':
 			analyzeInLichess()
 			break
 		case 'r':
 			board.game.resign()
+			break
+		case 'a':
+			const analysisButton = await getElement('[aria-label="Self Analysis"]')
+			analysisButton?.click()
 			break
 	}
 }
@@ -19,7 +32,7 @@ async function main() {
 	board = await getElement(BOARD_SELECTOR, {timeoutMs: -1})
 
 	board.game.on('Load', () => {
-		toast('New game loaded.')
+		// toast('New game loaded.')
 
 		board.game.setOptions({animationType: 'medium'})
 
